@@ -5,6 +5,15 @@ const router = express.Router();
 
 
 // GET /things - - - - - - - Respond with all the things.
+router.get('/', (req, res) => {
+    console.log('router is online');
+    pool.query('SELECT * FROM team_crud')
+    .then((dbResult) => {
+        res.send(dbResult.rows);
+        console.log('checking...')
+    }
+    )
+});
 
 // GET /things/:id - - - - - Respond with one thing.
 

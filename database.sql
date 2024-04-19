@@ -1,10 +1,10 @@
 -- These two lines make it so that every single SQL query in
 -- this file can be ran all at once to "reset" the database:
-DROP TRIGGER IF EXISTS "on_things_update" ON "things";
-DROP TABLE IF EXISTS "things";
+DROP TRIGGER IF EXISTS "on_team_crud_update" ON "team_crud";
+DROP TABLE IF EXISTS "team_crud";
 
 -- Table Schema Template:
-CREATE TABLE "things" (
+CREATE TABLE "team_crud" (
   "id" SERIAL PRIMARY KEY,
   "name" VARCHAR(500) NOT NULL,
   "is_nifty" BOOLEAN,
@@ -13,7 +13,7 @@ CREATE TABLE "things" (
 );
 
 -- Seed Data Template:
-INSERT INTO "things"
+INSERT INTO "team_crud"
   ("name", "is_nifty")
   VALUES
   ('Gizmo', true),
@@ -31,7 +31,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER on_things_update
-BEFORE UPDATE ON "things"
+CREATE TRIGGER on_team_crud_update
+BEFORE UPDATE ON "team_crud"
 FOR EACH ROW
 EXECUTE PROCEDURE set_updated_at_to_now();
